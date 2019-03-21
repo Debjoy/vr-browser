@@ -25,7 +25,8 @@ AFRAME.registerComponent('set-image', {
       setTimeout(function () {
         // Set image.
           if(data.src==="search"){
-              //document.getElementById("SearchArea").setAttribute('visible',"false");
+              document.getElementById("SearchArea").setAttribute('visible',"false");
+            document.getElementById("searchresults").setAttribute('visible',"true");
           }else if(data.src=="back"){
               
                 container = container.substring(0, container.length-1);
