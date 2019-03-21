@@ -1,2 +1,4 @@
 # vr-browser
-aframe based search engine front-end
+
+This is a search box in virtual reality based on the frame work aframe.js [GitHub](https://github.com/aframevr)  
+
