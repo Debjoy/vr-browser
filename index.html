@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>360&deg; Image Gallery</title>
+    <meta name="description" content="360&deg; Image Gallery - A-Frame">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
+    <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+
+            <!-- Images. -->
+            
+            <img id="sechelt" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+            
+            
+            
+            <img id="a" src="asset/a.png"><img id="b" src="asset/b.png"><img id="c" src="asset/c.png"><img id="d" src="asset/d.png">
+            <img id="e" src="asset/e.png"><img id="f" src="asset/f.png"><img id="g" src="asset/g.png"><img id="h" src="asset/h.png">
+            <img id="i" src="asset/i.png"><img id="j" src="asset/j.png"><img id="k" src="asset/k.png"><img id="l" src="asset/l.png">
+            <img id="m" src="asset/m.png"><img id="n" src="asset/n.png"><img id="o" src="asset/o.png"><img id="p" src="asset/p.png">
+            <img id="q" src="asset/q.png"><img id="r" src="asset/r.png"><img id="s" src="asset/s.png"><img id="t" src="asset/t.png">
+            <img id="u" src="asset/u.png"><img id="v" src="asset/v.png"><img id="w" src="asset/w.png"><img id="x" src="asset/x.png">
+            <img id="y" src="asset/y.png"><img id="z" src="asset/z.png"><img id="search" src="asset/search.png"><img id="back" src="asset/back.png">
+            <script id="plane" type="text/html">
+                <a-entity class="link" 
+      geometry="primitive: plane; height: 0.5; width: 0.5"
+      material="shader: flat; src: ${thumb}"
+      sound="on: click; src: #click-sound"
+      event-set__1="_event:mouseenter;scale:1.2 1.2 1.2"
+      event-set__2="_event:mouseleave;scale:1 1 1"
+      event-set__3="_event:mousedown;scale:1 1 1"
+      event-set__4="_event:mouseup;scale:1.2 1.2 1.2"
+      set-image="on: click; target: #image-360; src: ${src}"
+      ></a-entity>
+      
+  </script>
+        </a-assets>
+
+        <!-- 360-degree image. -->
+        <a-sky id="image-360" radius="10" src="#sechelt"></a-sky>
+       <a-entity id="SearchArea" visible="true">
+            <a-entity template="src: #plane" material="shader: flat; transparent: true; src: #search" position="0 1.52 -4" geometry="primitive: plane; height: 0.3; width: 0.3" sound="on: click; src: #click-sound"
+      event-set__1="_event:mouseenter;scale:1.2 1.2 1.2"
+      event-set__2="_event:mouseleave;scale:1 1 1"
+      event-set__3="_event:mousedown;scale:1 1 1"
+      event-set__4="_event:mouseup;scale:1.2 1.2 1.2" set-image="on: click; target: #image-360; src: search"></a-entity>
+      
+       <a-entity template="src: #plane" material="shader: flat; transparent: true; src: #back" position="0.5 1.52 -4" geometry="primitive: plane; height: 0.5; width: 0.5" sound="on: click; src: #click-sound"
+      event-set__1="_event:mouseenter;scale:1.2 1.2 1.2"
+      event-set__2="_event:mouseleave;scale:1 1 1"
+      event-set__3="_event:mousedown;scale:1 1 1"
+      event-set__4="_event:mouseup;scale:1.2 1.2 1.2" set-image="on: click; target: #image-360; src: back"></a-entity>
+        <!-- Link we will build. -->
+        <a-entity id="links" layout="layout:line;margin:0.52" position="-2.25 1.02 -4">
+            <a-entity template="src: #plane" data-src="q" data-thumb="#q"></a-entity>
+            <a-entity template="src: #plane" data-src="w" data-thumb="#w"></a-entity>
+            <a-entity template="src: #plane" data-src="e" data-thumb="#e"></a-entity>
+            <a-entity template="src: #plane" data-src="r" data-thumb="#r"></a-entity>
+            <a-entity template="src: #plane" data-src="t" data-thumb="#t"></a-entity>
+            <a-entity template="src: #plane" data-src="y" data-thumb="#y"></a-entity>
+            <a-entity template="src: #plane" data-src="u" data-thumb="#u"></a-entity>
+            <a-entity template="src: #plane" data-src="i" data-thumb="#i"></a-entity>
+            <a-entity template="src: #plane" data-src="o" data-thumb="#o"></a-entity>
+            <a-entity template="src: #plane" data-src="p" data-thumb="#p"></a-entity>
+        </a-entity>
+        <a-entity id="links" layout="layout:line;margin:0.52" position="-2 0.5 -4">
+            <a-entity template="src: #plane" data-src="a" data-thumb="#a"></a-entity>
+            <a-entity template="src: #plane" data-src="s" data-thumb="#s"></a-entity>
+            <a-entity template="src: #plane" data-src="d" data-thumb="#d"></a-entity>
+            <a-entity template="src: #plane" data-src="f" data-thumb="#f"></a-entity>
+            <a-entity template="src: #plane" data-src="g" data-thumb="#g"></a-entity>
+            <a-entity template="src: #plane" data-src="h" data-thumb="#h"></a-entity>
+            <a-entity template="src: #plane" data-src="j" data-thumb="#j"></a-entity>
+            <a-entity template="src: #plane" data-src="k" data-thumb="#k"></a-entity>
+            <a-entity template="src: #plane" data-src="l" data-thumb="#l"></a-entity>
+        </a-entity>
+        <a-entity id="links" layout="layout:line;margin:0.52" position="-1.75 -0.02 -4">
+            <a-entity template="src: #plane" data-src="z" data-thumb="#z"></a-entity>
+            <a-entity template="src: #plane" data-src="x" data-thumb="#x"></a-entity>
+            <a-entity template="src: #plane" data-src="c" data-thumb="#c"></a-entity>
+            <a-entity template="src: #plane" data-src="v" data-thumb="#v"></a-entity>
+            <a-entity template="src: #plane" data-src="b" data-thumb="#b"></a-entity>
+            <a-entity template="src: #plane" data-src="n" data-thumb="#n"></a-entity>
+            <a-entity template="src: #plane" data-src="m" data-thumb="#m"></a-entity>
+        </a-entity>
+        <!-- Camera + Cursor. -->
+        <a-entity static-body position="0 2 -4" rotation="0 0 0" geometry="primitive:plane;width:4; height:0.5;" material="color:#FFF" >
+        <a-text position="0 0 0"  color="#111" id="searchbox" value=""  align="center" rotation shadow></a-text></a-entity>
+        </a-entity>
+        <a-camera>
+            <a-cursor id="cursor" color="white">
+                <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+                <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+            </a-cursor>
+        </a-camera>
+    </a-scene>
+</body>
+
+</html>
