@@ -4,7 +4,7 @@ This is a search box in virtual reality based on the framework [Aframe.js](https
 
 ## Current State: Alpha  
 
-For now only the search box is implemented without the working of the actual search.
+The search box is working for now but it's highly unstable
 
 ## Demo
 You can look at a demo of the current project [Here](https://vr-search.glitch.me/)
