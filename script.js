@@ -25,10 +25,15 @@ AFRAME.registerComponent('set-image', {
       setTimeout(function () {
         // Set image.
           if(data.src==="search"){
+              if(container=="")return;
              search();
-          }else if(data.src=="back"){
-              
+          }else if(data.src==="back"){
                 container = container.substring(0, container.length-1);
+          }else if(data.src==="searchagain"){
+              container="";
+              document.getElementById("searchbox").setAttribute('value',container);
+              document.getElementById("searchresults").setAttribute('visible',"false");
+              document.getElementById("SearchArea").setAttribute('visible',"true");
           }
           else if(container.length<25)
           container=container+data.src;
