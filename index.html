@@ -13,7 +13,7 @@
     <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="fetchbeforehand()">
     <a-scene>
         <a-assets>
             <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
@@ -31,6 +31,7 @@
             <img id="q" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fq.png?1553142672748"><img id="r" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fr.png?1553142672388"><img id="s" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fs.png?1553142672726"><img id="t" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Ft.png?1553142673248">
             <img id="u" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fu.png?1553142673531"><img id="v" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fv.png?1553142673799"><img id="w" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fw.png?1553142674046"><img id="x" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fx.png?1553142667818">
             <img id="y" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fy.png?1553142667854"><img id="z" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fz.png?1553142668102"><img id="search" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fsearch.png?1553142672999"><img id="back" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2Fback.png?1553142668345">
+            <img id="searchagian" src="https://cdn.glitch.com/9528ca34-6ca8-4b0b-9845-6a4a58d8d4f0%2F12-512.png?1553699968343">
             <script id="plane" type="text/html">
                 <a-entity class="link" 
       geometry="primitive: plane; height: 0.5; width: 0.5"
@@ -60,6 +61,10 @@
       event-set__2="_event:mouseleave;scale:1 1 1"
       event-set__3="_event:mousedown;scale:1 1 1"
       event-set__4="_event:mouseup;scale:1.2 1.2 1.2" set-image="on: click; target: #image-360; src: back"></a-entity>
+           <a-text position="0 3 -4"  color="#FFF"  value="VR SEARCH BOX"  scale="3 3 3" align="center" rotation shadow></a-text>
+           
+           
+           
         <!-- Link we will build. -->
         <a-entity class="links" layout="layout:line;margin:0.52" position="-2.25 1.02 -4">
             <a-entity template="src: #plane" data-src="q" data-thumb="#q"></a-entity>
@@ -94,26 +99,35 @@
             <a-entity template="src: #plane" data-src="m" data-thumb="#m"></a-entity>
         </a-entity>
         <!-- Camera + Cursor. -->
-        <a-entity static-body position="0 2 -4" rotation="0 0 0" geometry="primitive:plane;width:4; height:0.5;" material="color:#FFF" >
-        <a-text position="0 0 0"  color="#111" id="searchbox" value=""  align="center" rotation shadow></a-text></a-entity>
+        <a-entity static-body position="0 2 -4" rotation="0 0 0" geometry="primitive:plane;width:4; height:0.5;" material="color:#FFF">
+            <a-text position="0 0 0"  color="#111" id="searchbox" value=""  align="center" rotation shadow></a-text></a-entity>
       </a-entity>
       
       
       <a-entity id="searchresults" visible="false">
         
+          <a-entity template="src: #plane" material="shader: flat; transparent: true; src: #searchagian" position="0 -0.7 -3.7" rotation="340 0 0" geometry="primitive: circle; radius: .5" sound="on: click; src: #click-sound"
+      event-set__1="_event:mouseenter;scale:1.2 1.2 1.2"
+      event-set__2="_event:mouseleave;scale:1 1 1"
+      event-set__3="_event:mousedown;scale:1 1 1"
+      event-set__4="_event:mouseup;scale:1.2 1.2 1.2" set-image="on: click; target: #image-360; src:searchagain">
+             
+          </a-entity>
+          
+          
       <a-entity static-body position="0 1.5 -4" rotation="0 0 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
         <a-text position="0 2 0"  color="#FFF" value="#1"  align="center" scale="2 2 2" rotation shadow></a-text>
-      <a-text position="-0.6 0.3 0"  class="result_title" color="#111" value="Result Title #1"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0"  class="result_title" color="#003a9b" value="Result Title #1"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="0 .45 -4.2" rotation="345 0 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111"  value="Result Title #2"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b"  value="Result Title #2"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="0 2.55 -4.2" rotation="15 0 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111"  value="Result Title #3"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b"  value="Result Title #3"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
@@ -122,17 +136,17 @@
       
       <a-entity static-body position="-2.7 1.5 -2.7" rotation="0 45 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
       <a-text position="0 2 0"   color="#FFF" value="#2"  align="center" scale="2 2 2" rotation shadow></a-text>
-      <a-text position="-0.6 0.3 0"  class="result_title" color="#111" value="Result Title #4"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0"  class="result_title" color="#003a9b" value="Result Title #4"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="-2.8 .45 -2.8" rotation="345 45 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111"  value="Result Title #5"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b"  value="Result Title #5"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="-2.8 2.55 -2.8" rotation="15 45 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0"  class="result_title" color="#111"  value="Result Title #6"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0"  class="result_title" color="#003a9b"  value="Result Title #6"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
 
@@ -140,17 +154,17 @@
       
       <a-entity static-body position="2.7 1.5 -2.7" rotation="0 315 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
        <a-text position="0 2 0"  color="#FFF" value="#3"  align="center" scale="2 2 2" rotation shadow></a-text>
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111" value="Result Title #7"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b" value="Result Title #7"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="2.8 .45 -2.8" rotation="345 315 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0"  class="result_title" color="#111"  value="Result Title #8"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0"  class="result_title" color="#003a9b"  value="Result Title #8"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="2.8 2.55 -2.8" rotation="15 315 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111"  value="Result Title #9"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b"  value="Result Title #9"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
@@ -160,34 +174,34 @@
       
       <a-entity static-body position="3.8 1.5 0" rotation="180 90 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
         <a-text position="0 -2 0"  color="#FFF" value="#4"  align="center" scale="2 2 2" rotation="0 0 180" shadow></a-text>
-      <a-text position="0.6 -0.3 0" class="result_title" color="#111" value="Result Title #10" rotation="0 0 180"  align="center" shadow></a-text>
+      <a-text position="0 -0.3 0" class="result_title" color="#003a9b" value="Result Title #10" rotation="0 0 180"  align="center" shadow></a-text>
         <a-text position="0 0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation="0 0 180" shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="4 .45 0" rotation="195 90 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="0.6 -0.3 0" class="result_title" color="#111"  value="Result Title #11" rotation="0 0 180"  align="center" shadow></a-text>
+      <a-text position="0 -0.3 0" class="result_title" color="#003a9b"  value="Result Title #11" rotation="0 0 180"  align="center" shadow></a-text>
         <a-text position="0 0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation="0 0 180" shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="4 2.55 0" rotation="165 90 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="0.6 -0.3 0" class="result_title" color="#111"  value="Result Title #12" rotation="0 0 180"  align="center"  shadow></a-text>
+      <a-text position="0 -0.3 0" class="result_title" color="#003a9b"  value="Result Title #12" rotation="0 0 180"  align="center"  shadow></a-text>
         <a-text position="0 0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation="0 0 180" shadow></a-text>
         </a-entity>
       
       
       <a-entity static-body position="-3.8 1.5 0" rotation="0 90 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
         <a-text position="0 2 0"  color="#FFF" value="#5"  align="center" scale="2 2 2" rotation shadow></a-text>
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111" value="Result Title #13"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b" value="Result Title #13"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="-4 .45 0" rotation="345 90 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title"  color="#111"  value="Result Title #14"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title"  color="#003a9b"  value="Result Title #14"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="-4 2.55 0" rotation="15 90 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111"  value="Result Title #15"  align="center" rotation shadow></a-text>
+      <a-text position="-0 0.3 0" class="result_title" color="#003a9b"  value="Result Title #15"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
@@ -196,17 +210,17 @@
       
       <a-entity static-body position="-2.7 1.5 2.7" rotation="0 135 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
         <a-text position="0 2 0"  color="#FFF" value="#6"  align="center" scale="2 2 2" rotation shadow></a-text>
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111" value="Result Title #16"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b" value="Result Title #16"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="-2.8 .45 2.8" rotation="345 135 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111"  value="Result Title #17"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b"  value="Result Title #17"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="-2.8 2.55 2.8" rotation="15 135 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111"  value="Result Title #18"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b"  value="Result Title #18"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
 
@@ -214,39 +228,39 @@
       
       <a-entity static-body position="2.7 1.5 2.7" rotation="0 225 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
         <a-text position="0 2 0"  color="#FFF" value="#7"  align="center" scale="2 2 2" rotation shadow></a-text>
-      <a-text position="-0.6 0.3 0"  class="result_title" color="#111" value="Result Title #19"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0"  class="result_title" color="#003a9b" value="Result Title #19"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
-      
+      <!--
       <a-entity static-body position="2.8 .45 2.8" rotation="345 225 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0"  class="result_title" color="#111"  value="Result Title #20"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0"  class="result_title" color="#003a9b"  value="Result Title #20"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
-      
+      -->
       <a-entity static-body position="2.8 2.55 2.8" rotation="15 225 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="-0.6 0.3 0" class="result_title" color="#111"  value="Result Title #21"  align="center" rotation shadow></a-text>
+      <a-text position="0 0.3 0" class="result_title" color="#003a9b"  value="Result Title #21"  align="center" rotation shadow></a-text>
         <a-text position="0 -0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation shadow></a-text>
         </a-entity>
-      
+      <!--
       
       
       
       <a-entity static-body position="0 1.5 4" rotation="180 0 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
         
-      <a-text position="0.6 -0.3 0" color="#111" value="Result Title #22"  rotation="0 0 180"  align="center" shadow></a-text>
-        <a-text position="0 0.1 0"  class="result_title"  color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation="0 0 180" shadow></a-text>
-        <a-text position="0 -2 0"  class="result_desc" color="#FFF" value="#8"  align="center" scale="2 2 2" rotation="0 0 180" shadow></a-text>
+      <a-text position="0 -0.3 0" color="#003a9b" value="Result Title #22"  rotation="0 0 180"  align="center" shadow></a-text>
+        <a-text position="0 -0.1 0"  class="result_title"  color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation="0 0 180" shadow></a-text>
+        
         </a-entity>
       
       <a-entity static-body position="0 .45 4.2" rotation="195 0 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="0.6 -0.3 0" class="result_title" color="#111"  value="Result Title #25"  rotation="0 0 180" align="center" shadow></a-text>
+      <a-text position="0 -0.3 0" class="result_title" color="#003a9b"  value="Result Title #23"  rotation="0 0 180" align="center" shadow></a-text>
         <a-text position="0 0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation="0 0 180" shadow></a-text>
         </a-entity>
       
       <a-entity static-body position="0 2.55 4.2" rotation="165 0 0" geometry="primitive:plane;width:3; height:1;" material="color:#FFF" >
-      <a-text position="0.6 -0.3 0"  class="result_title" color="#111"  value="Result Title #26" rotation="0 0 180"  align="center" shadow></a-text>
+      <a-text position="0 -0.3 0"  class="result_title" color="#003a9b"  value="Result Title #24" rotation="0 0 180"  align="center" shadow></a-text>
         <a-text position="0 0.1 0"  class="result_desc" color="#111" value="description is a big sig but what can we do really"  align="center"  scale=".6 .6 .6" rotation="0 0 180" shadow></a-text>
-        </a-entity>
+        </a-entity>-->
     </a-entity>
       <a-entity light="type: ambient; color: #EEE"></a-entity>
         <a-camera>
